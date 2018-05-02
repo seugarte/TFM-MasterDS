@@ -1,5 +1,8 @@
 __author__ = 'Sergio'
 
+app = Flask(__name__)
+Bootstrap(app)
+
 @app.route('/')
 def hello():
     return 'Hello, World!'
