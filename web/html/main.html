@@ -1,15 +1,69 @@
-{% extends 'base.html' %}
-
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
-{% endblock %}
+{% extends "bootstrap/base.html" %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>
+	<div class="panel panel-default">
+		<div class="panel-heading"><h1 style="text-align:center;">{{ title }}</h1></div>
+		<div class="panel-body"><h2 style="text-align:center;">{{ subtitle }}</h2></div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<form class="form-inline text-center" name="user_data" action="/" method="POST">
+				<label for="cities">City:</label>
+				<select class="selectpicker form-control" name="cities">
+					{% for city in cities_list %}
+					<option value="{{ city }}">{{ city }}</option>
+					{% endfor %}
+				</select>
+				<label for="brands">Brand:</label>
+				<select class="selectpicker form-control" name="brands">
+					{% for brand in brands_list %}
+					<option value="{{ brand }}">{{ brand }}</option>
+					{% endfor %}
+				</select>
+				<label for="types">Type:</label>
+				<select class="selectpicker form-control" name="types">
+					{% for type in types_list %}
+					<option value="{{ type }}">{{ type }}</option>
+					{% endfor %}
+				</select>
+				<label for="years">Year:</label>
+				<select class="selectpicker form-control" name="years">
+					{% for year in years_list %}
+					<option value="{{ year }}">{{ year }}</option>
+					{% endfor %}
+				</select>
+				<input type="submit" class="btn btn-primary" name="submit" value="Find'em all!" />
+			</form>
+		</div>
+		<div class="panel-body">
+			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ query_city }}, {{ query_brand }}, {{ query_type }}, {{ query_year }}</font></h3>
+		</div>
+	</div>
+<table class="table table-striped">
+	<tr>
+		<th class="text-center">City</th>
+		<th class="text-center">Brand</th>
+		<th class="text-center">Model</th>
+		<th class="text-center">Type</th>
+		<th class="text-center">Color</th>
+		<th class="text-center">Km</th>
+		<th class="text-center">Year</th>
+		<th class="text-center">Price</th>
+		<th class="text-center">url</th>
+	</tr>
+	{% for add in res %}
+	<tr>
+		<td class="text-center">{{ add[0] }}</td>
+		<td class="text-center">{{ add[1] }}</td>
+		<td class="text-center">{{ add[2] }}</td>
+		<td class="text-center">{{ add[3] }}</td>
+		<td class="text-center">{{ add[4] }}</td>
+		<td class="text-center">{{ add[5] }}</td>
+		<td class="text-center">{{ add[6] }}</td>
+		<td class="text-center">{{ add[7] }}</td>
+		<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
+	</tr>
+	{% endfor %}
+</table>
 {% endblock %}
