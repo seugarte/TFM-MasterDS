@@ -5,7 +5,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask_bootstrap import Bootstrap
-from recommender_class import Recommender
+from recommender import Recommender
 
 data = pd.read_csv('resources/cars_information.csv', sep=';', encoding='utf-8')
 
