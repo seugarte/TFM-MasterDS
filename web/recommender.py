@@ -47,7 +47,7 @@ class Recommender:
         geolocator = Nominatim()
         location = geolocator.geocode(self.city)
 
-        return (location.latitude, location.longitude)
+        return [location.latitude, location.longitude]
 
     def cities_distance(self, city_lat, city_lon):
         """
@@ -61,13 +61,10 @@ class Recommender:
         Usage of the Vincenty distance
         """
 
-        column_city = (city_lat, city_lon)
-        user_city = (self.lat, self.lon)
+        column_city = [city_lat, city_lon]
+        user_city = [self.lat, self.lon]
 
-        return (vincenty(column_city, user_city).km)
-
-    def distance_abs_value(self, a_value, b_value):
-        return abs(a_value - b_value)
+        return [vincenty(column_city, user_city).km]
 
     def weighted_sum(self, city_row, brand_row, type_row, year_row):
         """
@@ -81,7 +78,7 @@ class Recommender:
         params = np.array([city_row, brand_row, type_row, year_row])
         weights = np.array([self.weight_city, self.weight_brand, self.weight_type, self.weight_year])
 
-        num = sum(params * weights) * 1.0
+        num = pd.to_numeric(sum(params * weights))
         return num / self.total_weight
 
     def recommend(self):
@@ -100,7 +97,7 @@ class Recommender:
             new_column
             try:
                 self.data[new_column] = self.data.apply(
-                    lambda row: self.distance_abs_value(int(row[score_columns[i]]), self.scores[i]), axis=1)
+                    lambda row: abs(int(row[score_columns[i]]), self.scores[i]), axis=1)
             except TypeError:
                 print
                 new_column
@@ -111,7 +108,7 @@ class Recommender:
 
         result_columns = ['Title', 'City', 'Price', 'Year', 'Kms', 'Colour', 'Doors', 'Car Body', 'Output', 'Url', 'total_metric_pond']
 
-        res = self.data[result_columns].sort_values(by=['Total Metric'], ascending=True).head(self.k)
+        res = self.data[result_columns].sort_values(by=['Total Metric'], ascending=True).head(10)
 
 
         return res
