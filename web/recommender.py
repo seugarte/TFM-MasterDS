@@ -14,9 +14,9 @@ class Recommender:
         :param user_year: The year selected by the user in his request
         """
 
-        self.data = pd.read_csv('resources/cars_information.csv', sep=';', encoding='utf-8')
-        self.brands_df = pd.read_csv('resources/brands_rank.csv', sep=';', encoding='utf-8')
-        self.types_df = pd.read_csv('resources/type_car_score.csv', sep=';', encoding='utf-8')
+        self.data = pd.read_csv('web/resources/cars_information.csv', sep=';', encoding='utf-8')
+        self.brands_df = pd.read_csv('web/resources/brands_rank.csv', sep=';', encoding='utf-8')
+        self.types_df = pd.read_csv('web/resources/type_car_score.csv', sep=';', encoding='utf-8')
 
         self.city = user_city
         self.brand = user_brand
