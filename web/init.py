@@ -7,7 +7,7 @@ from flask import request
 from flask_bootstrap import Bootstrap
 from recommender import Recommender
 
-data = pd.read_csv('web/resources/cars_information.csv', sep=';', encoding='utf-8')
+data = pd.read_csv('web/resources/cars_information.csv', sep=',', encoding='utf-8')
 
 brands = sorted(data['Brand'].unique())
 types = sorted(data['Type'].unique())
@@ -42,4 +42,4 @@ def message():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
