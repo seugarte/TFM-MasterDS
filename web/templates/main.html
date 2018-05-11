@@ -39,37 +39,37 @@
 			</form>
 		</div>
 		<% if res %>
-			<div class="panel-body">
-				<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_city }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
-			</div>
+		<div class="panel-body">
+			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_city }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
+		</div>
 		<% endif %>
 	</div>
 	<% if res %>			
-		<table class="table table-striped">
-			<tr>
-				<th class="text-center">City</th>
-				<th class="text-center">Brand</th>
-				<th class="text-center">Model</th>
-				<th class="text-center">Type</th>
-				<th class="text-center">Color</th>
-				<th class="text-center">Km</th>
-				<th class="text-center">Year</th>
-				<th class="text-center">Price</th>
-				<th class="text-center">url</th>
-			</tr>
-			<!-- {% for add in res %}
-			<tr>
-				<td class="text-center">{{ add[0] }}</td>
-				<td class="text-center">{{ add[1] }}</td>
-				<td class="text-center">{{ add[2] }}</td>
-				<td class="text-center">{{ add[3] }}</td>
-				<td class="text-center">{{ add[4] }}</td>
-				<td class="text-center">{{ add[5] }}</td>
-				<td class="text-center">{{ add[6] }}</td>
-				<td class="text-center">{{ add[7] }}</td>
-				<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
-			</tr>
-			{% endfor %} -->
-		</table>
+	<table class="table table-striped">
+		<tr>
+			<th class="text-center">City</th>
+			<th class="text-center">Brand</th>
+			<th class="text-center">Model</th>
+			<th class="text-center">Type</th>
+			<th class="text-center">Color</th>
+			<th class="text-center">Km</th>
+			<th class="text-center">Year</th>
+			<th class="text-center">Price</th>
+			<th class="text-center">url</th>
+		</tr>
+		<!-- {% for add in res %}
+		<tr>
+			<td class="text-center">{{ add[0] }}</td>
+			<td class="text-center">{{ add[1] }}</td>
+			<td class="text-center">{{ add[2] }}</td>
+			<td class="text-center">{{ add[3] }}</td>
+			<td class="text-center">{{ add[4] }}</td>
+			<td class="text-center">{{ add[5] }}</td>
+			<td class="text-center">{{ add[6] }}</td>
+			<td class="text-center">{{ add[7] }}</td>
+			<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
+		</tr>
+		{% endfor %} -->
+	</table>
 	<% endif %>	
 {% endblock %}
