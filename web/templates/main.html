@@ -38,13 +38,11 @@
 				<input type="submit" class="btn btn-primary" name="submit" value="Submit" />
 			</form>
 		</div>
-		<% if usr_city || usr_brand || usr_type || usr_year %>
+		
 		<div class="panel-body">
 			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_city }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
 		</div>
-		<% endif %>
-	</div>
-	<% if if usr_city || usr_brand || usr_type || usr_year %>			
+	</div>			
 	<table class="table table-striped">
 		<tr>
 			<th class="text-center">City</th>
@@ -70,6 +68,5 @@
 			<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
 		</tr>
 		{% endfor %} -->
-	</table>
-	<% endif %>	
+	</table>	
 {% endblock %}
