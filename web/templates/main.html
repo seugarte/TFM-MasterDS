@@ -38,13 +38,13 @@
 				<input type="submit" class="btn btn-primary" name="submit" value="Submit" />
 			</form>
 		</div>
-		<% if res.empty %>
+		<% if res %>
 			<div class="panel-body">
 				<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_city }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
 			</div>
 		<% endif %>
 	</div>
-	<% if res.empty %>			
+	<% if res %>			
 		<table class="table table-striped">
 			<tr>
 				<th class="text-center">City</th>
