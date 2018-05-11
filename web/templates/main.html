@@ -4,9 +4,14 @@
 
 {% block content %}
 	<div class="panel panel-default">
-		<% if title %>
-		<div class="panel-heading"><h1 style="text-align:center;">{{ title }}</h1></div>
-		<% endif %>
+		<div class="panel-heading">
+			<h1 style="text-align:center;">
+				<% if title %>
+				{{ title }}
+				<% endif %>
+			</h1>
+		</div>
+		
 		<% id subtitle %>
 		<div class="panel-body"><h2 style="text-align:center;">{{ subtitle }}</h2></div>
 		<% endif %>
