@@ -45,28 +45,27 @@
 	</div>			
 	<table class="table table-striped">
 		<tr>
-			<th class="text-center">City</th>
+			<th class="text-center">Car</th>
 			<th class="text-center">Brand</th>
-			<th class="text-center">Model</th>
-			<th class="text-center">Type</th>
-			<th class="text-center">Color</th>
-			<th class="text-center">Km</th>
+			<th class="text-center">City</th>
 			<th class="text-center">Year</th>
+			<th class="text-center">Km</th>
+			<th class="text-center">Output</th>
 			<th class="text-center">Price</th>
-			<th class="text-center">url</th>
+			<th class="text-center">Url</th>
 		</tr>
-		<!-- {% for add in res %}
+		{% for adv in res %}
 		<tr>
-			<td class="text-center">{{ add[0] }}</td>
-			<td class="text-center">{{ add[1] }}</td>
-			<td class="text-center">{{ add[2] }}</td>
-			<td class="text-center">{{ add[3] }}</td>
-			<td class="text-center">{{ add[4] }}</td>
-			<td class="text-center">{{ add[5] }}</td>
-			<td class="text-center">{{ add[6] }}</td>
-			<td class="text-center">{{ add[7] }}</td>
+			<td class="text-center">{{ adv[0] }}</td>
+			<td class="text-center">{{ adv[1] }}</td>
+			<td class="text-center">{{ adv[2] }}</td>
+			<td class="text-center">{{ adv[3] }}</td>
+			<td class="text-center">{{ adv[4] }}</td>
+			<td class="text-center">{{ adv[5] }}</td>
+			<td class="text-center">{{ adv[6] }}</td>
+			<td class="text-center">{{ adv[7] }}</td>
 			<td class="text-center"><b><a href="{{ add[8] }}" target="_blank">ad link</a></b></td>
 		</tr>
-		{% endfor %} -->
+		{% endfor %}
 	</table>	
 {% endblock %}
