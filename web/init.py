@@ -21,13 +21,13 @@ Bootstrap(app)
 @app.route("/", methods=['GET', 'POST'])
 def message():
     title = "Cars Recommender"
-    subtitle = "Where you can find your best car"
+    subtitle = "Where you can find the best car"
     
-    usr_city = request.form.get("cities")
     usr_brand = request.form.get("brands")
+    usr_city = request.form.get("cities")
     usr_type = request.form.get("types")
     usr_year = request.form.get("years")
-
+    
     if usr_city != None and usr_brand != None and usr_type != None and usr_year != None:
         r = Recommender(usr_city, usr_brand, usr_type, usr_year)
         res = r.recommend().values.tolist()
@@ -35,10 +35,10 @@ def message():
         res = []
 
     return render_template("main.html", res=res, title=title, subtitle=subtitle,
-                           brands_list=brands, types_list=types,
-                           years_list=years, cities_list=cities,
-                           query_city=usr_city, query_brand=usr_brand,
-                           query_type=usr_type, query_year=usr_year)
+                           brands=brands, types=types,
+                           years=years, cities=cities,
+                           usr_city=usr_city, usr_brand=usr_brand,
+                           usr_type=usr_type, usr_year=usr_year)
 
 
 if __name__ == '__main__':

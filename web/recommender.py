@@ -29,6 +29,7 @@ class Recommender:
             self.brand_score = 0
         else:
             self.brand_score = int(self.brands_df[self.brands_df['brand'] == self.brand].score)
+            
         self.type_score = int(self.types_df[self.types_df['Type'] == self.type].score)
         self.scores = [self.brand_score, self.type_score, self.year]
 
@@ -64,7 +65,7 @@ class Recommender:
         column_city = [city_lat, city_lon]
         user_city = [self.lat, self.lon]
 
-        return [vincenty(column_city, user_city).km]
+        return vincenty(column_city, user_city).km
 
     def weighted_sum(self, city_row, brand_row, type_row, year_row):
         """
@@ -78,8 +79,11 @@ class Recommender:
         params = np.array([city_row, brand_row, type_row, year_row])
         weights = np.array([self.weight_city, self.weight_brand, self.weight_type, self.weight_year])
 
-        num = pd.to_numeric(sum(params * weights))
+        num = sum(params * weights) * 1.0
         return num / self.total_weight
+    
+    def distance_abs_value(self, a_value, b_value):
+        return abs(a_value - b_value)
 
     def recommend(self):
         """
@@ -93,20 +97,15 @@ class Recommender:
 
         for i, element in enumerate(['Brand', 'Type', 'Year']):
             new_column = element + ' Metric'
-            print
-            new_column
+            print(new_column)
             try:
-                self.data[new_column] = self.data.apply(
-                    lambda row: abs(int(row[score_columns[i]]), self.scores[i]), axis=1)
+                self.data[new_column] = self.data.apply(lambda row: self.distance_abs_value(int(row[score_columns[i]]), self.scores[i]), axis=1)
             except TypeError:
-                print
-                new_column
+                print(new_column)
 
-        self.data['Total Metric'] = self.data.apply(
-                lambda row: self.weighted_sum(row['City Metric'], row['Brand Metric'], row['Type Metric'],
-                                          row['Year Metric']), axis=1)
+        self.data['Total Metric'] = self.data.apply(lambda row: self.weighted_sum(row['City Metric'], row['Brand Metric'], row['Type Metric'], row['Year Metric']), axis=1)
 
-        result_columns = ['Title', 'City', 'Price', 'Year', 'Kms', 'Colour', 'Doors', 'Car Body', 'Output', 'Url', 'total_metric_pond']
+        result_columns = ['Title', 'Brand', 'City', 'Price (€)', 'Year', 'Kms', 'Output (cv)', 'Url', 'Total Metric']
 
         res = self.data[result_columns].sort_values(by=['Total Metric'], ascending=True).head(10)
 
