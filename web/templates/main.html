@@ -11,28 +11,44 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<form class="form-inline text-center" name="user_data" action="/" method="POST">
-				<label for="cities">City:</label>
+				<label for="provinces">Province:</label>
 				<select class="selectpicker form-control" name="cities">
-					{% for city in cities %}
-					<option value="{{ city }}">{{ city }}</option>
+					{% for prov in provinces %}
+						{% if prov == usr_province %}
+						<option selected=True value="{{ prov }}">{{ prov }}</option>
+						{% else %}
+						<option value="{{ prov }}">{{ prov }}</option>
+						{% endif %}
 					{% endfor %}
 				</select>
 				<label for="brands">Brand:</label>
 				<select class="selectpicker form-control" name="brands">
 					{% for brand in brands %}
-					<option value="{{ brand }}">{{ brand }}</option>
+						{% if brand == usr_brand %}
+						<option selected=True value="{{ brand }}">{{ brand }}</option>
+						{% else %}
+						<option value="{{ brand }}">{{ brand }}</option>
+						{% endif %}
 					{% endfor %}
 				</select>
 				<label for="types">Type:</label>
 				<select class="selectpicker form-control" name="types">
 					{% for type in types %}
-					<option value="{{ type }}">{{ type }}</option>
+						{% if type == usr_type %}
+						<option selected=True value="{{ type }}">{{ type }}</option>
+						{% else %}
+						<option value="{{ type }}">{{ type }}</option>
+						{% endif %}
 					{% endfor %}
 				</select>
 				<label for="years">Year:</label>
 				<select class="selectpicker form-control" name="years">
 					{% for year in years %}
-					<option value="{{ year }}">{{ year }}</option>
+						{% if year == usr_year %}
+						<option selected=True value="{{ year }}">{{ year }}</option>
+						{% else %}
+						<option value="{{ year }}">{{ year }}</option>
+						{% endif %}
 					{% endfor %}
 				</select>
 				<input type="submit" class="btn btn-primary" name="submit" value="Submit" />
@@ -40,19 +56,18 @@
 		</div>
 		
 		<div class="panel-body">
-			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_city }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
+			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_province }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
 		</div>
 	</div>			
 	<table class="table table-striped">
 		<tr>
 			<th class="text-center">Car</th>
 			<th class="text-center">Brand</th>
-			<th class="text-center">City</th>
+			<th class="text-center">Province</th>
 			<th class="text-center">Year</th>
 			<th class="text-center">Km</th>
-			<th class="text-center">Output</th>
 			<th class="text-center">Price</th>
-			<th class="text-center">Url</th>
+			<th class="text-center">Ad link</th>
 		</tr>
 		{% for adv in res %}
 		<tr>
@@ -61,10 +76,8 @@
 			<td class="text-center">{{ adv[2] }}</td>
 			<td class="text-center">{{ adv[3] }}</td>
 			<td class="text-center">{{ adv[4] }}</td>
-			<td class="text-center">{{ adv[5] }}</td>
-			<td class="text-center">{{ adv[6] }}</td>
-			<td class="text-center">{{ adv[7] }}</td>
-			<td class="text-center"><b><a href="{{ adv[8] }}" target="_blank">ad link</a></b></td>
+			<td class="text-center">{{ adv[5] }} €</td>
+			<td class="text-center"><a href="{{ adv[6] }}" target="_blank">Link</a></td>
 		</tr>
 		{% endfor %}
 	</table>	

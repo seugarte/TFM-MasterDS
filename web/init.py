@@ -12,7 +12,7 @@ data = pd.read_csv('web/resources/cars_information.csv', sep=',', encoding='utf-
 brands = sorted(data['Brand'].unique())
 types = sorted(data['Type'].unique())
 years = sorted(data['Year'].unique())
-cities = sorted(data['City'].unique())
+cities = sorted(data['Province'].unique())
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -24,21 +24,21 @@ def message():
     subtitle = "Where you can find the best car"
     
     usr_brand = request.form.get("brands")
-    usr_city = request.form.get("cities")
+    usr_province = request.form.get("provinces")
     usr_type = request.form.get("types")
     usr_year = request.form.get("years")
     
-    if usr_city != None and usr_brand != None and usr_type != None and usr_year != None:
-        r = Recommender(usr_city, usr_brand, usr_type, usr_year)
+    if usr_province != None and usr_brand != None and usr_type != None and usr_year != None:
+        r = Recommender(usr_province, usr_brand, usr_type, usr_year)
         res = r.recommend().values.tolist()
     else:
         res = []
 
     return render_template("main.html", res=res, title=title, subtitle=subtitle,
                            brands=brands, types=types,
-                           years=years, cities=cities,
-                           usr_city=usr_city, usr_brand=usr_brand,
-                           usr_type=usr_type, usr_year=usr_year)
+                           years=years, provinces=provinces,
+                           usr_province=usr_province, usr_brand=usr_brand,
+                           usr_type=usr_type, usr_year=int(usr_year))
 
 
 if __name__ == '__main__':
