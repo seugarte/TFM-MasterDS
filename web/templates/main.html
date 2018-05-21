@@ -12,9 +12,9 @@
 		<div class="panel-heading">
 			<form class="form-inline text-center" name="user_data" action="/" method="POST">
 				<label for="provinces">Province:</label>
-				<select class="selectpicker form-control" name="cities">
+				<select class="selectpicker form-control" name="provinces">
 					{% for prov in provinces %}
-						{% if prov == usr_province %}
+						{% if prov == user_province %}
 						<option selected=True value="{{ prov }}">{{ prov }}</option>
 						{% else %}
 						<option value="{{ prov }}">{{ prov }}</option>
@@ -24,7 +24,7 @@
 				<label for="brands">Brand:</label>
 				<select class="selectpicker form-control" name="brands">
 					{% for brand in brands %}
-						{% if brand == usr_brand %}
+						{% if brand == user_brand %}
 						<option selected=True value="{{ brand }}">{{ brand }}</option>
 						{% else %}
 						<option value="{{ brand }}">{{ brand }}</option>
@@ -34,7 +34,7 @@
 				<label for="types">Type:</label>
 				<select class="selectpicker form-control" name="types">
 					{% for type in types %}
-						{% if type == usr_type %}
+						{% if type == user_type %}
 						<option selected=True value="{{ type }}">{{ type }}</option>
 						{% else %}
 						<option value="{{ type }}">{{ type }}</option>
@@ -44,7 +44,7 @@
 				<label for="years">Year:</label>
 				<select class="selectpicker form-control" name="years">
 					{% for year in years %}
-						{% if year == usr_year %}
+						{% if year == user_year %}
 						<option selected=True value="{{ year }}">{{ year }}</option>
 						{% else %}
 						<option value="{{ year }}">{{ year }}</option>
@@ -56,7 +56,7 @@
 		</div>
 		
 		<div class="panel-body">
-			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ usr_province }}, {{ usr_brand }}, {{ usr_type }}, {{ usr_year }}</font></h3>
+			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ user_province }}, {{ user_brand }}, {{ user_type }}, {{ user_year }}</font></h3>
 		</div>
 	</div>			
 	<table class="table table-striped">

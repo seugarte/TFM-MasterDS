@@ -18,7 +18,7 @@ class Recommender:
         self.brands_df = pd.read_csv('web/resources/brands_rank.csv', sep=';', encoding='utf-8')
         self.types_df = pd.read_csv('web/resources/type_car_score.csv', sep=';', encoding='utf-8')
 
-        self.province = province_city
+        self.province = user_province
         self.brand = user_brand
         self.type = user_type
         self.year = int(user_year)
@@ -38,7 +38,7 @@ class Recommender:
         self.weight_type = 40
         self.weight_year = 40
         self.weight_province = 10
-        self.total_weight = self.weight_brand + self.weight_type + self.weight_year + self.weight_city
+        self.total_weight = self.weight_brand + self.weight_type + self.weight_year + self.weight_province
 
     def user_location_coords(self):
         """
