@@ -12,6 +12,7 @@ I decided to develop this project because there are a lot of people who have sev
 The technologies that I had to use to develop this recommender system are:
 - Python
 - Flask
+- Jinja2
 ...
 
 ### Data obtention
