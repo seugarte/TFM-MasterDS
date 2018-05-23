@@ -21,7 +21,7 @@ Bootstrap(app)
 @app.route("/", methods=['GET', 'POST'])
 def message():
     title = "Cars Recommender"
-    subtitle = "The best way to buy a car"
+    subtitle = "Introduce the data that you want"
     
     user_brand = request.form.get("brands")
     user_province = request.form.get("provinces")

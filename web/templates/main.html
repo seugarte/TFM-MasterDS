@@ -54,11 +54,14 @@
 				<input type="submit" class="btn btn-primary" name="submit" value="Submit" />
 			</form>
 		</div>
-		
+		{% if res %}
 		<div class="panel-body">
 			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ user_province }}, {{ user_brand }}, {{ user_type }}, {{ user_year }}</font></h3>
 		</div>
-	</div>			
+		{% endif %}
+	</div>
+
+	{% if res %}
 	<table class="table table-striped">
 		<tr>
 			<th class="text-center">Car</th>
@@ -80,5 +83,6 @@
 			<td class="text-center"><a href="{{ adv[6] }}" target="_blank">Link</a></td>
 		</tr>
 		{% endfor %}
-	</table>	
+	</table>
+	{% endif %}
 {% endblock %}
