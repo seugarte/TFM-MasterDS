@@ -7,7 +7,7 @@ from flask import request
 from flask_bootstrap import Bootstrap
 from recommender import Recommender
 
-data = pd.read_csv('web/resources/cars_information.csv', sep=',', encoding='utf-8')
+data = pd.read_csv('web/static/data/cars_information.csv', sep=',', encoding='utf-8')
 
 brands = sorted(data['Brand'].unique())
 types = sorted(data['Type'].unique())
@@ -21,7 +21,7 @@ Bootstrap(app)
 @app.route("/", methods=['GET', 'POST'])
 def message():
     title = "Cars Recommender"
-    subtitle = "Where you can find the best car"
+    subtitle = "The best way to buy a car"
     
     user_brand = request.form.get("brands")
     user_province = request.form.get("provinces")
@@ -29,7 +29,7 @@ def message():
     user_year = request.form.get("years")
     
     if user_province != None and user_brand != None and user_type != None and user_year != None:
-        # This is for the select of the form
+        # This is for storing the year introduced before
         user_year = int(user_year)
         r = Recommender(user_province, user_brand, user_type, user_year)
         res = r.recommend().values.tolist()
