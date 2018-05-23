@@ -10,8 +10,8 @@ I decided to develop this project because there are a lot of people who have sev
 
 ### Technologies
 The technologies that I had to use to develop this recommender system are:
-*Python
-*Flask
+- Python
+- Flask
 ...
 
 ### Data obtention
