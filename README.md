@@ -13,6 +13,8 @@ The technologies that I had to use to develop this recommender system are:
 - Python
 - Flask
 - Jinja2
+- Bootstrap
+- HTML
 ...
 
 ### Data obtention
