@@ -1,11 +1,11 @@
 {% extends "bootstrap/base.html" %}
 
-<link rel="icon" type="image/x-icon" href="{{ url_for('html', filename='static/images/cars_logo.jpg') }}" />
+<link rel="icon" type="image/x-icon" href="static/images/cars_logo.jpg" />
+<link rel="stylesheet" type="text/css" href="static/css/recommender.css" />
 
 {% block content %}
 	<div class="panel panel-default">
 		<div class="panel-heading"><h1 style="text-align:center;">{{ title }}</h1></div>
-		<div class="panel-body"><h2 style="text-align:center;">{{ subtitle }}</h2></div>
 	</div>
 
 	<div class="panel panel-default">
@@ -51,12 +51,22 @@
 						{% endif %}
 					{% endfor %}
 				</select>
+				<label for="kms">Kms:</label>
+				{% if user_kms %}
+				<input type="text" name="kms" value="{{ user_kms }}">
+				{% else %}
+				<input type="text" name="kms" value="">
+				{% endif %}
 				<input type="submit" class="btn btn-primary" name="submit" value="Submit" />
 			</form>
 		</div>
 		{% if res %}
 		<div class="panel-body">
+			{% if user_kms != 0 %}
+			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ user_province }}, {{ user_brand }}, {{ user_type }}, {{ user_year }}, {{ user_kms }} kms</font></h3>
+			{% else %}
 			<h3 style="text-align:center;">Results obtained for: <font color="#286090">{{ user_province }}, {{ user_brand }}, {{ user_type }}, {{ user_year }}</font></h3>
+			{% endif %}
 		</div>
 		{% endif %}
 	</div>

@@ -7,12 +7,13 @@ from geopy.distance import vincenty
 class Recommender:
 
     # Constructor of the Recommender class
-    def __init__(self, user_province, user_brand, user_type, user_year):
+    def __init__(self, user_province, user_brand, user_type, user_year, user_kms):
         """
         :param user_province: the province selected by the user in his request
         :param user_brand: the car brand selected by the user in his request
         :param user_type: The car type selected by the user in his request
         :param user_year: The year selected by the user in his request
+        :param user_kms: The kms selected by the user in his request
         """
 
         self.data = pd.read_csv('web/static/data/cars_information.csv', sep=',', encoding='utf-8')
@@ -23,6 +24,7 @@ class Recommender:
         self.brand = user_brand
         self.type = user_type
         self.year = int(user_year)
+        
         self.lat = self.user_location()[0]
         self.lon = self.user_location()[1]
 
@@ -35,13 +37,22 @@ class Recommender:
         self.scores = [self.brand_score, self.type_score, self.year]
 
         # Weights of the characteristics that the user can choose
-        self.weight_brand = 30
-        self.weight_type = 40
-        self.weight_year = 40
         self.weight_province = 10
-        self.total_weight = self.weight_brand + self.weight_type + self.weight_year + self.weight_province
+        self.weight_brand = 30
+        self.weight_type = 20
+        self.weight_year = 40
+        
+        self.total_weight = self.weight_province + self.weight_brand + self.weight_type + self.weight_year
 
+        #If the user select the kms field, we will work this this information. Else, we will ignore it.
+        if user_kms != 0:
+            self.kms = int(user_kms)
+            self.scores.append(self.kms)
+            self.weight_kms = 40
+            self.total_weight += self.weight_kms
+        
     # Methods of the class
+    
     def weighted_sum(self, province_row, brand_row, type_row, year_row):
         """
         :param province_row: value of corresponding register in the province_metric field
@@ -50,9 +61,26 @@ class Recommender:
         :param year_row: value of corresponding register in the year_metric field
         :return: the weighted sum of the input parameters
         """
-
+        
         params = np.array([province_row, brand_row, type_row, year_row])
         weights = np.array([self.weight_province, self.weight_brand, self.weight_type, self.weight_year])
+
+        num = sum(params * weights) * 1.0
+        
+        return num / self.total_weight 
+    
+    def weighted_sum_with_kms(self, province_row, brand_row, type_row, year_row, kms_row):
+        """
+        :param province_row: value of corresponding register in the province_metric field
+        :param brand_row: value of corresponding register in the brand_metric field
+        :param type_row: value of corresponding register in the type_metric field
+        :param year_row: value of corresponding register in the year_metric field
+        :param kms_row: value of corresponding register in the kms_metric field
+        :return: the weighted sum of the input parameters
+        """
+        
+        params = np.array([province_row, brand_row, type_row, year_row, kms_row])
+        weights = np.array([self.weight_province, self.weight_brand, self.weight_type, self.weight_year, self.weight_kms])
 
         num = sum(params * weights) * 1.0
         
@@ -89,7 +117,7 @@ class Recommender:
         The function which recommends us the cars
         :return: the 10 registers closest to the user's selection.
         """
-
+        
         score_columns = ['Brand Score', 'Type Score', 'Year']
 
         self.data['Province Metric'] = self.data.apply(lambda row: self.provinces_distance(row['Latitude'], row['Longitude']), axis=1)
@@ -98,7 +126,12 @@ class Recommender:
             new_column = element + ' Metric'
             self.data[new_column] = self.data.apply(lambda row: abs(int(row[score_columns[i]]) - self.scores[i]), axis=1)
 
-        self.data['Total Metric'] = self.data.apply(lambda row: self.weighted_sum(row['Province Metric'], row['Brand Metric'], row['Type Metric'], row['Year Metric']), axis=1)
+        if len(self.scores) > 3:
+            self.data['Kms Metric'] = self.data.apply(lambda row: abs(int(row['Kms']) - self.scores[3]), axis=1)
+            
+            self.data['Total Metric'] = self.data.apply(lambda row: self.weighted_sum_with_kms(row['Province Metric'], row['Brand Metric'], row['Type Metric'], row['Year Metric'], row['Kms Metric']), axis=1)
+        else:
+            self.data['Total Metric'] = self.data.apply(lambda row: self.weighted_sum(row['Province Metric'], row['Brand Metric'], row['Type Metric'], row['Year Metric']), axis=1)
 
         result_columns = ['Title', 'Brand', 'Province', 'Year', 'Kms', 'Price (€)', 'Url', 'Total Metric']
 
