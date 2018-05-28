@@ -21,7 +21,6 @@ Bootstrap(app)
 @app.route("/", methods=['GET', 'POST'])
 def message():
     title = "Cars Recommender"
-    subtitle = "Introduce the data that you want"
     
     user_brand = request.form.get("brands")
     user_province = request.form.get("provinces")
@@ -40,9 +39,8 @@ def message():
     else:
         res = []
 
-    return render_template("main.html", res=res, title=title, subtitle=subtitle,
-                           brands=brands, types=types,
-                           years=years, provinces=provinces,
+    return render_template("main.html", res=res, title=title, brands=brands, 
+                           types=types, years=years, provinces=provinces,
                            user_province=user_province, user_brand=user_brand,
                            user_type=user_type, user_year=user_year, user_kms=user_kms)
 
