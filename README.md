@@ -62,3 +62,10 @@ Concretely, we had to create two python files:
 After those files, we had to create a template called 'main.html' which shows the results and allows the user introducing the data that he or she wants.
 
 Url of the repository: https://github.com/seugarte/TFM-MasterDS/tree/master/web
+
+
+### How to run the web application
+
+If we want to run the Flask application, firstly we must download the 'web' directory. Afther that, in our terminal of linux we have to change the work directory to the 'web' directory, and then we must execute te next command: *python init.py*
+
+Now we must write this url in our web browser: http://127.0.0.1:5000/
