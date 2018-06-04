@@ -13,18 +13,27 @@ This data frame contains the next columns:
 - **Price:** The price of the car.
 - **Year:** The year when the car was put on the market.
 - **Kms:** The kilometres of the car.
-- **Fuel:** The type of fuel which is used by the car.
-'Gasolina', 'Diesel', 'Híbrido', 'Eléctrico'
-- **Type of gears:** 
-'Manual', 'Automática secuencial', 'Manual automatizada',
-       'Automática', 'Automática continua',
-       'Automática continua, secuencial', 'Directo, sin caja de cambios'
-- **Seller:** 
-'Profesional', 'Particular'
-- **Guarantee:** 
-'No', 'Sí'
-- **Colour:**
-- **Boot Capacity:**
+- **Fuel:** The type of fuel which is used by the car. There are 4 types:
+       - *Gasolina* 
+       - *Diesel* 
+       - *Híbrido* 
+       - *Eléctrico*
+- **Type of gears:** The type of gears. There are 7 types:
+       - *Manual* 
+       - *Automática secuencial* 
+       - *Manual automatizada*
+       - *Automática*
+       - *Automática continua*
+       - *Automática continua secuencial*
+       - *Directo, sin caja de cambios*
+- **Seller:** The kind of seller. There are 2 types:
+       - *Profesional*
+       - *Particular*
+- **Guarantee:** This column says if the vehicle has guarantee or not.
+       - *No*
+       - *Sí*
+- **Colour:** The colour of the car.
+- **Boot Capacity:** 
 - **Length:**
 - **Height:**
 - **Width:**
