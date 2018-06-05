@@ -1,8 +1,8 @@
 {% extends "bootstrap/base.html" %}
 
-<link rel="icon" type="image/x-icon" href="static/images/cars_logo.jpg" />
-
 {% block content %}
+	<link rel="icon" href="{{ url_for('static', filename='images/cars_logo.jpg') }}" type="image/x-icon"/>
+
 	<div class="panel panel-default">
 		<div class="panel-heading"><h1 style="text-align:center;">{{ title }}</h1></div>
 	</div>
@@ -73,7 +73,7 @@
 	{% if res %}
 	<table class="table table-striped">
 		<tr>
-			<th class="text-center">Car</th>
+			<th class="text-center">Vehicle</th>
 			<th class="text-center">Brand</th>
 			<th class="text-center">Province</th>
 			<th class="text-center">Year</th>
