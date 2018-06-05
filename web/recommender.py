@@ -50,9 +50,9 @@ class Recommender:
             self.scores.append(self.kms)
             self.weight_kms = 40
             self.total_weight += self.weight_kms
-        
-    # Methods of the class
+     
     
+    # Methods of the class
     def weighted_sum(self, province_row, brand_row, type_row, year_row):
         """
         :param province_row: value of corresponding register in the province_metric field
