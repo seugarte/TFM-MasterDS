@@ -40,6 +40,6 @@ This data frame contains the next columns:
  - **Cylinders:** The number of cylinders of the car. These are the possible values: *4 en línea*, *6 en V*, *3 en línea*, *5 en línea*, *6 en línea*, *6 en Boxer*, *4 en Boxer*, *12 en V*, *8 en V*, *0 en no link (0008)*, *10 en V*, *12 en W*, *2 en línea*, *2 en Boxer*, *2 en Rotativo*, *8 en línea*, *5 en V* and *8 en W*.
  - **Max Par:** The motor power in Newtons per metre.
  - **Gears:** The number of gears of the vehicle.
- - **Transmission:** *Manual*, *Automática secuencial*, *Manual automatizada*, *Automática*, *Automática continua*, *Automática continua, secuencial* and *Directo, sin caja de cambios*.
- - **Traction:** *Delantera*, *Trasera*, *Todo terreno total permanente*, *Total permanente*, *Todo terreno total conectable*, *Total conectable*, *No link (0005)*.
+ - **Transmission:** These are the different types of transmission in the data frame: *Manual*, *Automática secuencial*, *Manual automatizada*, *Automática*, *Automática continua*, *Automática continua, secuencial* and *Directo, sin caja de cambios*.
+ - **Traction:** These are the different types of traction in the data frame: *Delantera*, *Trasera*, *Todo terreno total permanente*, *Total permanente*, *Todo terreno total conectable*, *Total conectable*, *No link (0005)*.
  - **Url:** The link to the advertisement.
