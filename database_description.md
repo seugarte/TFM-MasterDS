@@ -2,10 +2,7 @@
 
 The cars_data.csv is a file that contains all the information obtained from the catalogue of second hand cars.
 
-
-# Features
-
-This data frame contains the next columns:
+Concretely, the database containshe next columns:
 
 - **Title:** The complete name of the car.
 - **Brand:** The brand of each car.
