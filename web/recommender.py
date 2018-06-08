@@ -44,7 +44,7 @@ class Recommender:
         
         self.total_weight = self.weight_province + self.weight_brand + self.weight_type + self.weight_year
 
-        #If the user select the kms field, we will work this this information. Else, we will ignore it.
+        #If the user select the kms field, we will work with this information. Else, we will ignore it.
         if user_kms != 0:
             self.kms = int(user_kms)
             self.scores.append(self.kms)
